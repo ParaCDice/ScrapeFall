@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MenuController">
+   <Pane prefHeight="800.0" prefWidth="600.0">
+      <children>
+          <Button fx:id="continueButton" layoutX="236.0" layoutY="482.0" onAction="#onContinueClick" prefHeight="59.0" prefWidth="133.0" text="Continue">
+            <font>
+               <Font name="Onyx" size="34.0" />
+            </font>
+         </Button>
+         <ChoiceBox fx:id="choiceBox" layoutX="186.0" layoutY="373.0" prefHeight="27.0" prefWidth="233.0" />
+         <Label fx:id="titleLabel" layoutX="2.0" layoutY="72.0" prefHeight="198.0" prefWidth="600.0" text="SCRAPE-FALL" textAlignment="CENTER">
+            <font>
+               <Font name="Playbill" size="182.0" />
+            </font>
+         </Label>
+         <Label fx:id="credits" layoutX="14.0" layoutY="769.0" prefHeight="17.0" prefWidth="158.0" text="Created by: Piper Paradise" />
+         <Label fx:id="errorLabel" layoutX="238.0" layoutY="559.0" prefHeight="17.0" prefWidth="133.0" textFill="RED" />
+      </children>
+   </Pane>
+</VBox>

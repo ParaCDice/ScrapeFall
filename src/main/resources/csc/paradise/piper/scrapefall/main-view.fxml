@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
+   <Pane fx:id="test" prefHeight="800.0" prefWidth="679.0">
+      <children>
+         <ScrollPane hbarPolicy="NEVER" maxHeight="630.0" maxWidth="480.0" minHeight="630.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" vbarPolicy="NEVER">
+            <content>
+               <TilePane fx:id="cardPaneContainer" maxWidth="480.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" />
+            </content>
+         </ScrollPane>
+         <TextField layoutX="124.0" layoutY="635.0" prefHeight="25.0" prefWidth="287.0" />
+         <Label layoutX="14.0" layoutY="639.0" text="Enter Scryfall Query :" />
+         <Button layoutX="489.0" layoutY="14.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="236.0" text="Scrape Price">
+            <font>
+               <Font size="34.0" />
+            </font></Button>
+         <Button fx:id="getCardsButton" layoutX="414.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#getCards" prefHeight="25.0" prefWidth="68.0" text="Get Cards" />
+         <ScrollPane layoutX="507.0" layoutY="99.0" prefHeight="532.0" prefWidth="200.0">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+           </content>
+         </ScrollPane>
+      </children>
+   </Pane>
+</VBox>
