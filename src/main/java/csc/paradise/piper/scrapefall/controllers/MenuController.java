@@ -44,4 +44,9 @@ public class MenuController {
             }
         }
     }
+
+    @FXML
+    protected void onExit(){
+        System.exit(0);
+    }
 }

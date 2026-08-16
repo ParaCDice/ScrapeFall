@@ -11,6 +11,7 @@ module csc.paradise.piper.scrapefall {
     requires org.apache.commons.text;
     requires playwright;
     requires jdk.compiler;
+    requires java.desktop;
 
     opens csc.paradise.piper.scrapefall to javafx.fxml;
     exports csc.paradise.piper.scrapefall;

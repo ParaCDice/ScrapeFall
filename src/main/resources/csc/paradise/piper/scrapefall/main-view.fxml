@@ -4,32 +4,150 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" prefHeight="800.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
    <Pane fx:id="test" prefHeight="800.0" prefWidth="679.0">
       <children>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeLineJoin="ROUND" width="739.0">
+            <fill>
+               <LinearGradient cycleMethod="REFLECT" endX="0.5971563981042654" endY="1.0">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.14035087823867798" blue="0.21052631735801697" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.006711409395973154">
+                        <color>
+                           <Color red="0.3698018193244934" green="0.3462475538253784" blue="0.3815789520740509" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.1666666716337204" blue="0.25" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </fill>
+         </Rectangle>
          <ScrollPane hbarPolicy="NEVER" maxHeight="630.0" maxWidth="480.0" minHeight="630.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" vbarPolicy="NEVER">
             <content>
-               <TilePane fx:id="cardPaneContainer" maxWidth="480.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" />
+               <TilePane fx:id="cardPaneContainer" maxWidth="480.0" minWidth="480.0" prefHeight="630.0" prefWidth="487.0" />
             </content>
          </ScrollPane>
-         <TextField layoutX="124.0" layoutY="635.0" prefHeight="25.0" prefWidth="287.0" />
-         <Label layoutX="14.0" layoutY="639.0" text="Enter Scryfall Query :" />
-         <Button layoutX="489.0" layoutY="14.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="236.0" text="Scrape Price">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutY="631.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="480.0">
+            <fill>
+               <LinearGradient startX="1.0">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.14035087823867798" blue="0.21052631735801697" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.006711409395973154">
+                        <color>
+                           <Color red="0.7368420958518982" green="0.7368420958518982" blue="0.7368420958518982" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.9932885906040269">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </fill>
+         </Rectangle>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" height="98.0" layoutX="481.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="261.0">
+            <fill>
+               <LinearGradient startX="1.0">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.14035087823867798" blue="0.21052631735801697" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.006711409395973154">
+                        <color>
+                           <Color red="0.7368420958518982" green="0.7368420958518982" blue="0.7368420958518982" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.9932885906040269">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </fill>
+         </Rectangle>
+         <TextField layoutX="110.0" layoutY="636.0" prefHeight="25.0" prefWidth="289.0" />
+         <Label layoutY="639.0" text="Enter Scryfall Query :" />
+         <Button fx:id="scrapeButton" layoutX="493.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#onScrapeClick" prefHeight="82.0" prefWidth="237.0" text="Scrape Price">
             <font>
                <Font size="34.0" />
             </font></Button>
-         <Button fx:id="getCardsButton" layoutX="414.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#getCards" prefHeight="25.0" prefWidth="68.0" text="Get Cards" />
-         <ScrollPane layoutX="507.0" layoutY="99.0" prefHeight="532.0" prefWidth="200.0">
+         <Button fx:id="getCardsButton" layoutX="402.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#getCards" prefHeight="25.0" prefWidth="69.0" text="Get Cards" />
+         <ScrollPane hbarPolicy="NEVER" layoutX="507.0" layoutY="134.0" prefHeight="532.0" prefWidth="200.0" vbarPolicy="NEVER">
            <content>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+
            </content>
+            <content>
+               <TilePane fx:id="pricePaneContainer" maxWidth="200.0" minWidth="200.0" prefHeight="532.0" prefWidth="200.0" />
+            </content>
          </ScrollPane>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="507.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+            <fill>
+               <LinearGradient startX="1.0">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.14035087823867798" blue="0.21052631735801697" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.006711409395973154">
+                        <color>
+                           <Color red="0.7368420958518982" green="0.7368420958518982" blue="0.7368420958518982" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.9932885906040269">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </fill>
+         </Rectangle>
+         <Label alignment="CENTER" layoutX="507.0" layoutY="102.0" prefHeight="27.0" prefWidth="194.0" text="Scraped Cards">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
       </children>
    </Pane>
 </VBox>

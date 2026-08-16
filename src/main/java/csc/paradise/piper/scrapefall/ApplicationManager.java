@@ -27,6 +27,8 @@ public class ApplicationManager extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         appStage = stage;
+        stage.setResizable(false);
+        stage.setFullScreen(false);
         setApplicationScene("menu-view.fxml","Menu");
     }
 
@@ -69,7 +71,7 @@ public class ApplicationManager extends Application {
 
     private static Scene getSceneFromFXML(String fxmlPath){
         try {
-            return new Scene((new FXMLLoader(ApplicationManager.class.getResource(fxmlPath))).load(), DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
+            return new Scene((new FXMLLoader(ApplicationManager.class.getResource(fxmlPath))).load());
         } catch (IOException e) {
             return new Scene(new Pane(new Label("FXML DIDN'T LOAD")),DEFAULT_WINDOW_WIDTH,DEFAULT_WINDOW_HEIGHT);
         }
