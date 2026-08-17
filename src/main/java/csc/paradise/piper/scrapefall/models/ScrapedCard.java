@@ -1,6 +1,7 @@
 package csc.paradise.piper.scrapefall.models;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 public class ScrapedCard {
 
@@ -49,7 +50,7 @@ public class ScrapedCard {
     }
 
     public String getPriceAsString(){
-        return "$" + getCardPrice().toString();
+        return NumberFormat.getCurrencyInstance().format(getCardPrice());
     }
 
     @Override

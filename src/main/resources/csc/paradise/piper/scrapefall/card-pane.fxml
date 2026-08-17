@@ -7,28 +7,29 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cardPane" focusTraversable="true" prefHeight="250.0" prefWidth="480.0" scaleShape="false"
-            xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="cardPane" focusTraversable="true" prefHeight="250.0" prefWidth="480.0" scaleShape="false" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="250.0" stroke="BLACK" strokeType="INSIDE"
-                   width="480.0"/>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8a8a8" height="250.0" stroke="#a1a1a1" strokeType="INSIDE"
-                   strokeWidth="0.0" width="182.0"/>
-        <ImageView fitHeight="250.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true"/>
-        <Label layoutX="188.0" layoutY="22.0" prefHeight="17.0" prefWidth="273.0" text="Card Name"/>
-        <Label alignment="CENTER_RIGHT" layoutX="335.0" layoutY="39.0" prefHeight="17.0" prefWidth="131.0"
-               text="Card Cost" textAlignment="RIGHT" textOverrun="CLIP"/>
-        <Label alignment="TOP_LEFT" layoutX="188.0" layoutY="78.0" prefHeight="136.0" prefWidth="273.0"
-               text="Card Description"/>
-        <Label alignment="CENTER" layoutX="60.0" layoutY="108.0" prefHeight="17.0" prefWidth="62.0" text="Card Img"/>
-        <Button fx:id="rulingsButton" layoutX="196.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="62.0" text="Rulings"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="250.0" stroke="BLACK" strokeType="INSIDE" width="480.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8a8a8" height="250.0" stroke="#a1a1a1" strokeType="INSIDE" strokeWidth="0.0" width="182.0" />
+        <Label alignment="CENTER" layoutX="60.0" layoutY="108.0" prefHeight="17.0" prefWidth="62.0" text="Card Img" />
+        <ImageView fitHeight="250.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true" />
+        <Label layoutX="188.0" layoutY="22.0" prefHeight="17.0" prefWidth="273.0" text="Card Name" />
+        <Label alignment="CENTER_RIGHT" layoutX="335.0" layoutY="39.0" prefHeight="17.0" prefWidth="131.0" text="Card Cost" textAlignment="RIGHT" textOverrun="CLIP" />
+        <Label alignment="TOP_LEFT" layoutX="188.0" layoutY="49.0" prefHeight="8.0" prefWidth="273.0" text="Card Type" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font></Label>
+        <Button fx:id="rulingsButton" layoutX="196.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Rulings" />
         <Label layoutX="188.0" layoutY="39.0" prefHeight="17.0" prefWidth="227.0" text="Card Set">
             <font>
-                <Font size="10.0"/>
+                <Font size="10.0" />
             </font>
         </Label>
-        <Button fx:id="changeButton" layoutX="347.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="116.0" text="Change Set/Art"/>
+        <Button fx:id="changeButton" layoutX="347.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Change Set/Art" />
+      <Label alignment="TOP_LEFT" layoutX="188.0" layoutY="76.0" prefHeight="145.0" prefWidth="273.0" text="Card Description" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

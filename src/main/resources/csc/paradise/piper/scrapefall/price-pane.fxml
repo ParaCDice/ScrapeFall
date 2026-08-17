@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pricePane" maxHeight="75.0" maxWidth="200.0" minHeight="75.0" minWidth="200.0" prefHeight="75.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.ScrapedCardController">
+<AnchorPane fx:id="pricePane" maxHeight="75.0" maxWidth="200.0" minHeight="75.0" minWidth="200.0" prefHeight="75.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.ScrapedCardController">
         <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeee" height="75.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aeaeae" height="75.0" stroke="BLACK" strokeType="INSIDE" width="55.0" />

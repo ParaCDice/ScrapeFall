@@ -1,18 +1,16 @@
 package csc.paradise.piper.scrapefall.models;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.LoadState;
+import com.microsoft.playwright.options.RequestOptions;
 import net.dzultra.jsa.cards.Card;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Scraper {
@@ -28,40 +26,51 @@ public class Scraper {
         INITIALIZED = true;
     }
 
-    public static List<ScrapedCard> oasisScraper(Card requestedCard,boolean inStock) {
+    public static List<ScrapedCard> oasisScraper(Card requestedCard, boolean inStock, int limit, boolean setFilter){
         if (!INITIALIZED){initialize();}
-        System.out.println(requestedCard.name());
         List<ScrapedCard> cards = new ArrayList<>();
-        Page page = pageBrowser.newPage();
-        String url = String.format("https://www.oasisgamesslc.com/shop/magic?name=%s&in_stock=%b&is_sealed=false", StringEscapeUtils.escapeHtml4(requestedCard.name()),inStock);
-        page.navigate(url);
-        page.waitForLoadState(LoadState.NETWORKIDLE);
+        APIRequestContext request = scraperWright.request().newContext();
+        Map<String, Object> requestPayload = new HashMap<>();
+        ArrayList<String> tempList = new ArrayList<>();
 
-        Locator cardContainers = page.locator(".GeneralThumbnail");
+        tempList.add(String.valueOf(inStock).toLowerCase());
+        requestPayload.put("in_stock", tempList.clone());
+        tempList.clear();
+        requestPayload.put("is_buylist",false);
+        requestPayload.put("is_sealed",false);
+        tempList.add("en");
+        requestPayload.put("language",tempList.clone());
+        tempList.clear();
+        requestPayload.put("limit",limit);
+        if(setFilter){
+            tempList.add(requestedCard.set());
+            requestPayload.put("magic_set",tempList.clone());
+            tempList.clear();
+        }
+        requestPayload.put("name",requestedCard.name());
+        tempList.add("magic");
+        requestPayload.put("product_line",tempList.clone());
+        tempList.clear();
 
-        for (int cardIndex = 0; cardIndex < Math.min(5,cardContainers.count()); cardIndex++) {
-            Locator cardCNth = cardContainers.nth(cardIndex);
-            Locator titleCont = cardCNth.locator(".gtTitleSection");
-            Locator priceContainer = cardCNth.locator(".gtInventorySection");
-            Locator quantityContainer = cardCNth.locator(".gtQtyWrapper");
+        APIResponse inventory = request.post("https://www.oasisgamesslc.com/api/products/search/inventory", RequestOptions.create().setHeader("x-storeid","f98a01b3154fe3ede1b8f7172a1d2dce").setData(requestPayload));
+        JsonObject responseJson = JsonParser.parseString(inventory.text()).getAsJsonObject();
 
-            String price = priceContainer.locator(".gtPriceWrapper").allTextContents().stream().map(Objects::toString).collect(Collectors.joining(""));
-            int quantity = quantityContainer.allTextContents().isEmpty() ? 4 : Integer.parseInt(quantityContainer.allTextContents().stream().map(Objects::toString).collect(Collectors.joining("")).replaceAll("Qty",""));
+        for (JsonElement cardElement : responseJson.get("data").getAsJsonArray()){
+            JsonObject card = cardElement.getAsJsonObject();
+            String name = card.get("name").getAsString();
+            BigDecimal price = card.get("sell_price_max").getAsBigDecimal();
+            String set = card.get("foreign_obj").getAsJsonObject().get("set_code").getAsString();
+            int quantity = card.get("total_quantity").getAsInt();
 
-            cards.add(new ScrapedCard(titleCont.locator(".gtTitleWrapper").textContent(),
-                    new BigDecimal(price.replaceAll(",", "").replaceAll("\\$","").split(" — ")[0]),
-                    titleCont.locator(".gtSetWrapper").textContent(),
-                    quantity
-                    ));
-            System.out.println(cards.getLast());
+            cards.add(new ScrapedCard(name,price,set,quantity));
         }
 
-        page.close();
         return cards;
     }
 
+
     public static List<ScrapedCard> oasisScraper(Card requestedCard) {
-        return oasisScraper(requestedCard,true);
+        return oasisScraper(requestedCard,true,5,false);
     }
 
 }
