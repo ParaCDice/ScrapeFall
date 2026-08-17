@@ -3,6 +3,7 @@ package csc.paradise.piper.scrapefall;
 import com.microsoft.playwright.Browser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -60,7 +61,7 @@ public class ApplicationManager extends Application {
         return storedChoice;
     }
 
-    public static Parent getNodesFromFXML(String fxmlPath){
+    public static Node getNodesFromFXML(String fxmlPath){
         try {
             FXMLLoader loader = new FXMLLoader(ApplicationManager.class.getResource(fxmlPath));
             return loader.load();

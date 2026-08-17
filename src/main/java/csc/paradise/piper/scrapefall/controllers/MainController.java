@@ -5,9 +5,7 @@ import csc.paradise.piper.scrapefall.models.ScrapedCard;
 import csc.paradise.piper.scrapefall.models.Scraper;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -75,6 +73,7 @@ public class MainController {
         }
 
         cardPaneContainer.getChildren().clear();
+
         for (Card card : cards.cards()) {
             AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("card-pane.fxml");
 
@@ -102,11 +101,10 @@ public class MainController {
                 }
 
             }
-
             cardPaneContainer.getChildren().add(tempPane);
         }
-
     }
+
 
     public static void setSelectedCard(Card newCard) {
         selectedCard = newCard;

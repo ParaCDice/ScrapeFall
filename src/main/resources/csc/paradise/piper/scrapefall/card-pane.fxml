@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cardPane" focusTraversable="true" prefHeight="250.0" prefWidth="480.0" scaleShape="false" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="cardPane" focusTraversable="true" prefHeight="250.0" prefWidth="480.0" scaleShape="false" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.CardPaneController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="250.0" stroke="BLACK" strokeType="INSIDE" width="480.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8a8a8" height="250.0" stroke="#a1a1a1" strokeType="INSIDE" strokeWidth="0.0" width="182.0" />
