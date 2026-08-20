@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.text.Text;
 import net.dzultra.jsa.ScryfallClient;
 import net.dzultra.jsa.cards.Card;
 import net.dzultra.jsa.cards.CardList;
@@ -21,7 +22,6 @@ import net.dzultra.jsa.exceptions.CardSearchException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +46,7 @@ public class MainController {
     @FXML
     public TextField queryField;
 
-    CardRequester cardRequester;
+    static CardRequester cardRequester;
 
     static Card selectedCard;
 
@@ -78,25 +78,28 @@ public class MainController {
             AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("card-pane.fxml");
 
             for (Node child : tempPane.getChildren()) {
-                if (child.getClass().equals(Label.class)) {
-                    if (((Label) child).getText().contains("Set")) {
-                        ((Label) child).setText(card.set_name());
-                    } else if (((Label) child).getText().contains("Name")) {
-                        ((Label) child).setText(card.name());
-                    } else if (((Label) child).getText().contains("Cost")) {
-                        ((Label) child).setText(card.mana_cost());
-                    } else if (((Label) child).getText().contains("Description")) {
-                        ((Label) child).setText(card.oracle_text());
-                    } else if (((Label) child).getText().contains("Type")) {
-                        ((Label) child).setText(card.type_line());
+                if (child instanceof Label labelNode) {
+                    String text = switch (labelNode.getId()) {
+                        case "cardNameLabel" -> card.name();
+                        case "cardCostLabel" -> card.mana_cost();
+                        case "cardTypeLabel" -> card.type();
+                        case "cardSetLabel" -> card.set_name();
+                        case "cardDescLabel" -> card.oracle_text();
+                        case null, default -> "";
+                    };
+                    if(text!=null && !text.isEmpty()) {
+                        labelNode.setText(text);
                     }
-                } else if (child.getClass().equals(ImageView.class)) {
-                    ImageView childImageView = (ImageView) child;
+                } else if (child instanceof ImageView childImageView) {
                     try {
                         childImageView.setImage(new Image(Objects.requireNonNull(card.image_uris()).normal().toURL().openStream()));
                         // TODO: Double sided cards don't work LOL
                     } catch (Exception ignored) {
                         System.out.println("aw no img");
+                    }
+                } else if(child instanceof Text){
+                    if(child.getId().equalsIgnoreCase("cardID")){
+                        ((Text) child).setText(String.valueOf(card.scryfall_id()));
                     }
                 }
 
@@ -110,32 +113,6 @@ public class MainController {
         selectedCard = newCard;
     }
 
-    @FXML
-    protected void onScrapeClick() {
-        List<ScrapedCard> cards = Scraper.oasisScraper(cardRequester.getCardsByQuery("Bloom Tender", null, OrderMode.NAME, null).cards()[0]);
-        for (ScrapedCard scrapedCard : cards) {
-            Card card = cardRequester.getCardByName(scrapedCard.getCardName(), scrapedCard.getCardSet(), true);
-            AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("price-pane.fxml");
-            for (Node child : tempPane.getChildren()) {
-                if (child.getClass().equals(Label.class)) {
-                    if (((Label) child).getText().contains("Set")) {
-                        ((Label) child).setText(card.set_name());
-                    } else if (((Label) child).getText().contains("Name")) {
-                        ((Label) child).setText(card.name());
-                    } else if (((Label) child).getText().contains("Price")) {
-                        ((Label) child).setText(scrapedCard.getPriceAsString());
-                    }
-                } else if (child.getClass().equals(ImageView.class)) {
-                    ImageView childImageView = (ImageView) child;
-                    try {
-                        childImageView.setImage(new Image(Objects.requireNonNull(card.image_uris()).png().toURL().openStream()));
-                    } catch (IOException ignored) {
-                    }
-                }
-            }
-            pricePaneContainer.getChildren().add(tempPane);
-        }
-    }
 
     @FXML
     protected void onExit() {

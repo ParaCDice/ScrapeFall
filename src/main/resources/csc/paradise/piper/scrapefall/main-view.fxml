@@ -72,47 +72,15 @@
                </LinearGradient>
             </fill>
          </Rectangle>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" height="98.0" layoutX="481.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="261.0">
-            <fill>
-               <LinearGradient startX="1.0">
-                  <stops>
-                     <Stop>
-                        <color>
-                           <Color red="0.14035087823867798" blue="0.21052631735801697" />
-                        </color>
-                     </Stop>
-                     <Stop offset="0.006711409395973154">
-                        <color>
-                           <Color red="0.7368420958518982" green="0.7368420958518982" blue="0.7368420958518982" />
-                        </color>
-                     </Stop>
-                     <Stop offset="0.9932885906040269">
-                        <color>
-                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
-                        </color>
-                     </Stop>
-                     <Stop offset="1.0">
-                        <color>
-                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
-                        </color>
-                     </Stop>
-                  </stops>
-               </LinearGradient>
-            </fill>
-         </Rectangle>
          <TextField fx:id="queryField" layoutX="110.0" layoutY="636.0" onKeyTyped="#onQueryFieldTextChanged" prefHeight="25.0" prefWidth="289.0" />
          <Label layoutY="639.0" text="Enter Scryfall Query :" />
-         <Button fx:id="scrapeButton" layoutX="493.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#onScrapeClick" prefHeight="82.0" prefWidth="237.0" text="Scrape Price">
-            <font>
-               <Font size="34.0" />
-            </font></Button>
          <Button fx:id="getCardsButton" layoutX="402.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#getCards" prefHeight="25.0" prefWidth="69.0" text="Get Cards" />
-         <ScrollPane hbarPolicy="NEVER" layoutX="507.0" layoutY="134.0" prefHeight="532.0" prefWidth="200.0" vbarPolicy="NEVER">
+         <ScrollPane hbarPolicy="NEVER" layoutX="509.0" layoutY="59.0" prefHeight="605.0" prefWidth="200.0" vbarPolicy="NEVER">
             <content>
                <TilePane fx:id="pricePaneContainer" maxWidth="200.0" minWidth="200.0" prefHeight="532.0" prefWidth="200.0" />
             </content>
          </ScrollPane>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="507.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="507.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
             <fill>
                <LinearGradient startX="1.0">
                   <stops>
@@ -140,16 +108,11 @@
                </LinearGradient>
             </fill>
          </Rectangle>
-         <Label alignment="CENTER" layoutX="507.0" layoutY="102.0" prefHeight="27.0" prefWidth="194.0" text="Scraped Cards">
+         <Label alignment="CENTER" layoutX="510.0" layoutY="18.0" prefHeight="27.0" prefWidth="194.0" text="Scraped Cards">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Button fx:id="selectCardButton" layoutX="147.0" layoutY="682.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="187.0" text="Select Card">
-            <font>
-               <Font size="29.0" />
-            </font>
-         </Button>
          <Label fx:id="cardsErrorLabel" alignment="CENTER" layoutX="2.0" layoutY="243.0" prefHeight="98.0" prefWidth="466.0" textFill="RED">
             <font>
                <Font size="32.0" />

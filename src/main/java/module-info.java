@@ -13,6 +13,7 @@ module csc.paradise.piper.scrapefall {
     requires jdk.compiler;
     requires java.desktop;
     requires com.google.gson;
+    requires javafx.graphics;
 
     opens csc.paradise.piper.scrapefall to javafx.fxml;
     exports csc.paradise.piper.scrapefall;
