@@ -7,24 +7,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pricePane" maxHeight="75.0" maxWidth="200.0" minHeight="75.0" minWidth="200.0" prefHeight="75.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.ScrapedCardController">
+<AnchorPane fx:id="pricePane" maxHeight="75.0" maxWidth="200.0" minHeight="75.0" minWidth="200.0" prefHeight="75.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.ScrapedCardController">
         <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeee" height="75.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aeaeae" height="75.0" stroke="BLACK" strokeType="INSIDE" width="55.0" />
-            <ImageView fitHeight="75.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aeaeae" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="55.0" />
             <Label layoutX="55.0" layoutY="9.0" prefHeight="17.0" prefWidth="144.0" text="Card Set">
                 <font>
-                    <Font size="9.0" />
+                    <Font size="11.0" />
                 </font>
             </Label>
-            <Label layoutX="55.0" prefHeight="17.0" prefWidth="144.0" text="Card Name">
+            <Label layoutX="55.0" prefHeight="17.0" prefWidth="144.0" text="Card Name" />
+            <Label layoutX="55.0" layoutY="48.0" prefHeight="17.0" prefWidth="144.0" text="Card Price">
                 <font>
-                    <Font size="9.0" />
-                </font>
-            </Label>
-            <Label layoutX="55.0" layoutY="61.0" prefHeight="17.0" prefWidth="144.0" text="Card Price">
-                <font>
-                    <Font size="9.0" />
+                    <Font size="16.0" />
                 </font>
             </Label>
             <Label layoutX="7.0" layoutY="30.0" text="Card Img">
@@ -32,6 +27,7 @@
                     <Font size="10.0" />
                 </font>
             </Label>
-      <Button fx:id="removeButton" layoutX="174.0" layoutY="25.0" mnemonicParsing="false" text="X" onMouseClicked="#onRemove"/>
+            <ImageView fitHeight="75.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="removeButton" layoutX="156.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onRemove" prefHeight="26.0" prefWidth="26.0" text="X" />
         </children>
 </AnchorPane>

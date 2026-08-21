@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -20,8 +21,10 @@ import net.dzultra.jsa.cards.CardRequester;
 import net.dzultra.jsa.cards.enums.CardIDType;
 import net.dzultra.jsa.sets.SetRequester;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CardPaneController {
     @FXML
@@ -80,8 +83,6 @@ public class CardPaneController {
 
     private void adjustRulingsDialog(){
         List<Node> nodes = NodeUtils.getAllNodes((Parent) rulingsFxml);
-        System.out.println(nodes);
-        System.out.println(getCard().legalities());
         for (Node node : nodes){
             switch (node.getId()){
                 //--------------------- standard
@@ -419,6 +420,7 @@ public class CardPaneController {
         ButtonType okButton = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.getDialogPane().getButtonTypes().add(okButton);
+        dialog.setTitle("Rulings for " + getCard().name());
         dialog.getDialogPane().setPrefWidth(300);
         dialog.getDialogPane().setPrefHeight(260);
         dialog.getDialogPane().getChildren().add(rulingsFxml);

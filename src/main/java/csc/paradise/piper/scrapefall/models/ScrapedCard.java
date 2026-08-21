@@ -65,6 +65,12 @@ public class ScrapedCard {
 
     @Override
     public String toString() {
-        return STR."ScrapedCard{cardName='\{cardName}', cardSet='\{cardSet}', cardPrice=\{cardPrice}, quantity=\{quantity}}";
+        return "ScrapedCard{" +
+                "cardName='" + cardName + '\'' +
+                ", cardSet='" + cardSet + '\'' +
+                ", cardPrice=" + cardPrice +
+                ", quantity=" + quantity +
+                ", collectorNum='" + collectorNum + '\'' +
+                '}';
     }
 }

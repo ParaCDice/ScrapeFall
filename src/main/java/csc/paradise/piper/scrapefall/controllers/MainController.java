@@ -1,6 +1,7 @@
 package csc.paradise.piper.scrapefall.controllers;
 
 import csc.paradise.piper.scrapefall.ApplicationManager;
+import csc.paradise.piper.scrapefall.models.CardUtils;
 import csc.paradise.piper.scrapefall.models.ScrapedCard;
 import csc.paradise.piper.scrapefall.models.Scraper;
 import javafx.fxml.FXML;
@@ -76,7 +77,6 @@ public class MainController {
 
         for (Card card : cards.cards()) {
             AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("card-pane.fxml");
-
             for (Node child : tempPane.getChildren()) {
                 if (child instanceof Label labelNode) {
                     String text = switch (labelNode.getId()) {
@@ -87,18 +87,13 @@ public class MainController {
                         case "cardDescLabel" -> card.oracle_text();
                         case null, default -> "";
                     };
-                    if(text!=null && !text.isEmpty()) {
+                    if (text != null) {
                         labelNode.setText(text);
                     }
                 } else if (child instanceof ImageView childImageView) {
-                    try {
-                        childImageView.setImage(new Image(Objects.requireNonNull(card.image_uris()).normal().toURL().openStream()));
-                        // TODO: Double sided cards don't work LOL
-                    } catch (Exception ignored) {
-                        System.out.println("aw no img");
-                    }
-                } else if(child instanceof Text){
-                    if(child.getId().equalsIgnoreCase("cardID")){
+                    childImageView.setImage(CardUtils.getCardImage(card));
+                } else if (child instanceof Text) {
+                    if (child.getId().equalsIgnoreCase("cardID")) {
                         ((Text) child).setText(String.valueOf(card.scryfall_id()));
                     }
                 }
@@ -106,11 +101,6 @@ public class MainController {
             }
             cardPaneContainer.getChildren().add(tempPane);
         }
-    }
-
-
-    public static void setSelectedCard(Card newCard) {
-        selectedCard = newCard;
     }
 
 

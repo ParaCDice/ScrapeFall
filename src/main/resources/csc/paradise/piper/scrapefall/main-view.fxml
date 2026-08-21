@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="800.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
    <Pane fx:id="test" prefHeight="800.0" prefWidth="679.0">
        <children>
          <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeLineJoin="ROUND" width="739.0">
