@@ -61,8 +61,9 @@ public class Scraper {
             BigDecimal price = card.get("sell_price_max").getAsBigDecimal();
             String set = card.get("foreign_obj").getAsJsonObject().get("set_code").getAsString();
             int quantity = card.get("total_quantity").getAsInt();
+            String collector_number = card.get("foreign_obj").getAsJsonObject().get("collector_number").getAsString();
 
-            cards.add(new ScrapedCard(name,price,set,quantity));
+            cards.add(new ScrapedCard(name,price,set,quantity,collector_number));
         }
 
         return cards;

@@ -9,12 +9,14 @@ public class ScrapedCard {
     String cardSet;
     BigDecimal cardPrice;
     int quantity;
+    String collectorNum;
 
-    public ScrapedCard(String cardName, BigDecimal cardPrice, String cardSet, int quantity) {
+    public ScrapedCard(String cardName, BigDecimal cardPrice, String cardSet, int quantity, String collectorNumber) {
         setCardName(cardName);
         setCardPrice(cardPrice);
         setCardSet(cardSet);
         setQuantity(quantity);
+        setCollectorNum(collectorNumber);
     }
 
     public String getCardName() {
@@ -47,6 +49,14 @@ public class ScrapedCard {
 
     private void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCollectorNum() {
+        return collectorNum;
+    }
+
+    private void setCollectorNum(String collectorNum) {
+        this.collectorNum = collectorNum;
     }
 
     public String getPriceAsString(){

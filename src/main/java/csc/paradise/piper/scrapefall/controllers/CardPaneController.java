@@ -47,8 +47,8 @@ public class CardPaneController {
 
     Color notLegalColor = Color.rgb(174,174,174);
     Color legalColor = Color.rgb(117,152,110);
-    Color bannedColor = Color.rgb(167, 31, 42, 0.58);
-    Color restrictColor = Color.rgb(36, 103, 130, 0.58);
+    Color bannedColor = Color.rgb(167, 31, 42);
+    Color restrictColor = Color.rgb(36, 103, 130);
 
     public TilePane pricePaneContainer;
 
@@ -442,7 +442,7 @@ public class CardPaneController {
         if(pricePaneContainer==null) {
             findPricePaneContainer();
         }
-        pricePaneContainer.getChildren().addAll(CardUtils.getScrapedCardPanes(getCard().name()));
+        pricePaneContainer.getChildren().addAll(CardUtils.getScrapedCardPanes(getCard()));
     }
 
 }

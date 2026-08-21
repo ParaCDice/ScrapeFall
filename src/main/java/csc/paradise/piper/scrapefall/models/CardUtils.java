@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import net.dzultra.jsa.ScryfallClient;
 import net.dzultra.jsa.cards.Card;
 import net.dzultra.jsa.cards.CardRequester;
+import net.dzultra.jsa.cards.enums.Language;
 import net.dzultra.jsa.cards.enums.OrderMode;
 
 import java.io.IOException;
@@ -18,12 +19,12 @@ import java.util.Objects;
 
 public class CardUtils {
 
-    public static List<AnchorPane> getScrapedCardPanes(String cardName){
+    public static List<AnchorPane> getScrapedCardPanes(Card inputCard){
         List<AnchorPane> allScrapeCardPanes = new ArrayList<>();
         CardRequester cardRequester = new CardRequester(new ScryfallClient("Scrape-Fall"));
-        List<ScrapedCard> cards = Scraper.oasisScraper(cardRequester.getCardsByQuery(cardName, null, OrderMode.NAME, null).cards()[0]);
+        List<ScrapedCard> cards = Scraper.oasisScraper(inputCard);
         for (ScrapedCard scrapedCard : cards) {
-            Card card = cardRequester.getCardByName(scrapedCard.getCardName(), scrapedCard.getCardSet(), true);
+            Card card = cardRequester.getCardBySetAndNumber(scrapedCard.cardSet,scrapedCard.collectorNum, Language.EN);
             AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("price-pane.fxml");
             for (Node child : tempPane.getChildren()) {
                 if (child.getClass().equals(Label.class)) {
