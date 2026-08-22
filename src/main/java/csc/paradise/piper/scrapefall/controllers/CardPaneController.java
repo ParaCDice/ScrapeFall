@@ -430,7 +430,7 @@ public class CardPaneController {
     }
 
     private void findPricePaneContainer(){
-        ArrayList<Node> allNodes = NodeUtils.getAllNodes((Pane) cardPane.getParent().getParent().getParent().getParent().getParent()); //UGLY I KNOW!!
+        ArrayList<Node> allNodes = NodeUtils.getAllNodes(cardPane.getParent().getParent().getParent().getParent().getParent()); //UGLY I KNOW!!
         for (Node node : allNodes){
             if(node!=null) {
                 if (node instanceof TilePane && node.getId().equalsIgnoreCase("pricePaneContainer")) {

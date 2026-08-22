@@ -2,10 +2,15 @@ package csc.paradise.piper.scrapefall.controllers;
 
 import csc.paradise.piper.scrapefall.ApplicationManager;
 import csc.paradise.piper.scrapefall.models.CardUtils;
+import csc.paradise.piper.scrapefall.models.NodeUtils;
 import csc.paradise.piper.scrapefall.models.ScrapedCard;
 import csc.paradise.piper.scrapefall.models.Scraper;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.SubScene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +18,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import net.dzultra.jsa.ScryfallClient;
 import net.dzultra.jsa.cards.Card;
 import net.dzultra.jsa.cards.CardList;
@@ -22,40 +30,48 @@ import net.dzultra.jsa.cards.enums.OrderMode;
 import net.dzultra.jsa.exceptions.CardSearchException;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainController {
-
     @FXML
-    public TilePane cardPaneContainer;
+    private TilePane cardPaneContainer;
     @FXML
-    public Pane test;
+    private Button scrapeButton;
     @FXML
-    public Button scrapeButton;
+    private Button getCardsButton;
     @FXML
-    public Button getCardsButton;
+    private TilePane pricePaneContainer;
     @FXML
-    public TilePane pricePaneContainer;
+    private Label totalPriceLabelBackDrop;
     @FXML
-    public Button selectCardButton;
+    private Label totalPriceLabel;
+    private int currentPricePaneContCount = 0;
+    private int lastPricePaneContCount = 0;
     @FXML
-    public Label cardsErrorLabel;
+    private Label cardsErrorLabel;
     @FXML
-    public Label scrapeErrorLabel;
+    private Label scrapeErrorLabel;
     @FXML
-    public TextField queryField;
+    private TextField queryField;
 
     static CardRequester cardRequester;
 
-    static Card selectedCard;
-
     private String query = "";
+
+    private final Pattern pricePattern = Pattern.compile("\\$([0-9]+.[0-9]{2})");
 
     @FXML
     protected void initialize() {
         cardRequester = new CardRequester(new ScryfallClient("Scrape-Fall"));
+        frameLoop();
     }
 
     @FXML
@@ -102,6 +118,65 @@ public class MainController {
             cardPaneContainer.getChildren().add(tempPane);
         }
     }
+
+
+
+    public void frameLoop() {
+        new AnimationTimer() {
+            long lastUpdate = -1;
+            double deltaTime;
+
+
+            private void update() {
+                currentPricePaneContCount = pricePaneContainer.getChildren().toArray().length;
+
+                if(lastPricePaneContCount!=currentPricePaneContCount){
+                    float totalPrice = getTotalPriceOfScrapedCardsInContainer().floatValue();
+                    String totalPriceString = NumberFormat.getCurrencyInstance().format(totalPrice);
+                    totalPriceLabelBackDrop.setText(totalPriceString);
+                    totalPriceLabel.setText(totalPriceString);
+                }
+
+                lastPricePaneContCount = currentPricePaneContCount;
+            }
+
+            @Override
+            public void handle(long now) {
+                if (lastUpdate < 0) {
+                    lastUpdate = now;
+                    return;
+                }
+
+                deltaTime = (now - lastUpdate) / 1_000_000_000.0;
+                update();
+                lastUpdate = now;
+            }
+        }.start();
+    }
+
+
+    private BigDecimal getTotalPriceOfScrapedCardsInContainer(){
+        ArrayList<Node> descendents = NodeUtils.getAllNodes(pricePaneContainer);
+        BigDecimal totalPrice = new BigDecimal(0);
+
+        for(Node node : descendents){
+            try {
+                if (node.getId().equalsIgnoreCase("priceLabel")) {
+                    try {
+                        Matcher priceMatcher = pricePattern.matcher(((Label) node).getText());
+                        System.out.println(priceMatcher.matches());
+                        totalPrice = totalPrice.add(new BigDecimal(priceMatcher.group(1)));
+                        System.out.println(totalPrice);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.err.println("WARNING: COULD NOT GET PRICE FOR CARD");
+                    }
+                }
+            }catch (NullPointerException ignored){}
+        }
+        return totalPrice;
+    }
+
 
 
     @FXML

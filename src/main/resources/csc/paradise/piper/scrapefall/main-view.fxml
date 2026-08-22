@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,8 +14,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="800.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
+<VBox fx:id="theBox" alignment="CENTER" prefHeight="800.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
    <Pane fx:id="test" prefHeight="800.0" prefWidth="679.0">
        <children>
          <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeLineJoin="ROUND" width="739.0">
@@ -42,6 +45,11 @@
          <ScrollPane hbarPolicy="NEVER" maxHeight="630.0" maxWidth="480.0" minHeight="630.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" vbarPolicy="ALWAYS">
             <content>
                <TilePane fx:id="cardPaneContainer" maxWidth="480.0" minWidth="480.0" prefHeight="630.0" prefWidth="487.0" />
+            </content>
+         </ScrollPane>
+         <ScrollPane hbarPolicy="NEVER" layoutX="509.0" layoutY="59.0" prefHeight="605.0" prefWidth="200.0" vbarPolicy="NEVER">
+            <content>
+               <TilePane fx:id="pricePaneContainer" maxWidth="200.0" minWidth="200.0" prefHeight="532.0" prefWidth="200.0" />
             </content>
          </ScrollPane>
          <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutY="631.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="480.0">
@@ -75,11 +83,6 @@
          <TextField fx:id="queryField" layoutX="110.0" layoutY="636.0" onKeyTyped="#onQueryFieldTextChanged" prefHeight="25.0" prefWidth="289.0" />
          <Label layoutY="639.0" text="Enter Scryfall Query :" />
          <Button fx:id="getCardsButton" layoutX="402.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#getCards" prefHeight="25.0" prefWidth="69.0" text="Get Cards" />
-         <ScrollPane hbarPolicy="NEVER" layoutX="509.0" layoutY="59.0" prefHeight="605.0" prefWidth="200.0" vbarPolicy="NEVER">
-            <content>
-               <TilePane fx:id="pricePaneContainer" maxWidth="200.0" minWidth="200.0" prefHeight="532.0" prefWidth="200.0" />
-            </content>
-         </ScrollPane>
          <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="507.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
             <fill>
                <LinearGradient startX="1.0">
@@ -113,14 +116,64 @@
                <Font size="18.0" />
             </font>
          </Label>
-         <Label fx:id="cardsErrorLabel" alignment="CENTER" layoutX="2.0" layoutY="243.0" prefHeight="98.0" prefWidth="466.0" textFill="RED">
+         <Label fx:id="cardsErrorLabel" alignment="CENTER" focusTraversable="false" layoutX="2.0" layoutY="243.0" mouseTransparent="true" prefHeight="98.0" prefWidth="466.0" textFill="RED">
             <font>
                <Font size="32.0" />
             </font>
          </Label>
-         <Label fx:id="scrapeErrorLabel" alignment="CENTER" layoutX="509.0" layoutY="266.0" prefHeight="98.0" prefWidth="200.0" textFill="RED">
+         <Label fx:id="scrapeErrorLabel" alignment="CENTER" focusTraversable="false" layoutX="509.0" layoutY="266.0" mouseTransparent="true" prefHeight="98.0" prefWidth="200.0" textFill="RED">
             <font>
                <Font size="32.0" />
+            </font>
+         </Label>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="509.0" layoutY="672.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+            <fill>
+               <LinearGradient startX="1.0">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.14035087823867798" blue="0.21052631735801697" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.006711409395973154">
+                        <color>
+                           <Color red="0.7368420958518982" green="0.7368420958518982" blue="0.7368420958518982" />
+                        </color>
+                     </Stop>
+                     <Stop offset="0.9932885906040269">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.44736841320991516" green="0.44736841320991516" blue="0.44736841320991516" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </fill>
+         </Rectangle>
+         <Text layoutX="510.0" layoutY="694.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price:" wrappingWidth="79.13671875">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Label fx:id="totalPriceLabelBackDrop" layoutX="587.0" layoutY="671.0" prefHeight="34.0" prefWidth="123.0" text="\$0.00">
+            <font>
+               <Font size="14.0" />
+            </font>
+            <effect>
+               <Glow level="1.0">
+                  <input>
+                     <ColorAdjust brightness="1.0" />
+                  </input>
+               </Glow>
+            </effect>
+         </Label>
+         <Label fx:id="totalPriceLabel" layoutX="587.0" layoutY="677.0" prefHeight="25.0" prefWidth="123.0" text="\$0.00">
+            <font>
+               <Font size="14.0" />
             </font>
          </Label>
       </children>

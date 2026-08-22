@@ -14,7 +14,7 @@ public class MenuController {
     @FXML
     public Button continueButton;
     @FXML
-    public ChoiceBox choiceBox;
+    public ChoiceBox<String> choiceBox;
     @FXML
     public Label credits;
     public Label errorLabel;
@@ -30,8 +30,8 @@ public class MenuController {
         errorLabel.setText("");
         switch (choiceBox.getSelectionModel().getSelectedIndex()){
             case 0:{
-                ApplicationManager.setStoredChoice((String) choiceBox.getSelectionModel().getSelectedItem());
-                ApplicationManager.setApplicationScene("main-view.fxml",(String) choiceBox.getSelectionModel().getSelectedItem());
+                ApplicationManager.setStoredChoice(choiceBox.getSelectionModel().getSelectedItem());
+                ApplicationManager.setApplicationScene("main-view.fxml",choiceBox.getSelectionModel().getSelectedItem());
                 break;
             }
             case 1,2:{

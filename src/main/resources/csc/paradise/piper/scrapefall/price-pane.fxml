@@ -17,7 +17,7 @@
                 </font>
             </Label>
             <Label layoutX="55.0" prefHeight="17.0" prefWidth="144.0" text="Card Name" />
-            <Label layoutX="55.0" layoutY="48.0" prefHeight="17.0" prefWidth="144.0" text="Card Price">
+            <Label fx:id="priceLabel" layoutX="55.0" layoutY="48.0" prefHeight="17.0" prefWidth="144.0" text="Card Price">
                 <font>
                     <Font size="16.0" />
                 </font>
