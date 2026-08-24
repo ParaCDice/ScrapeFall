@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -16,6 +17,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import net.dzultra.jsa.ScryfallClient;
 import net.dzultra.jsa.cards.Card;
 import net.dzultra.jsa.cards.CardRequester;
@@ -48,7 +50,9 @@ public class CardPaneController {
     @FXML
     public Label cardSetLabel;
     @FXML
-    public Label cardDescLabel;
+    public TextFlow cardDescFlow;
+    @FXML
+    public ImageView cardImageView;
 
     Color notLegalColor = Color.rgb(174,174,174);
     Color legalColor = Color.rgb(117,152,110);
@@ -66,9 +70,12 @@ public class CardPaneController {
     CardRequester cardRequester = new CardRequester(scrapeFallClient);
     SetRequester setRequester = new SetRequester(scrapeFallClient);
 
+    boolean cardImageLoaded = false;
+
     @FXML
     protected void initialize(){
         rulingsFxml = ApplicationManager.getNodesFromFXML("rulings-dialog.fxml");
+        frameLoop();
     }
 
 
@@ -80,9 +87,64 @@ public class CardPaneController {
         return currentCard;
     }
 
+    public void frameLoop() {
+        new AnimationTimer() {
+            long lastUpdate = -1;
+            double deltaTime;
 
-    private void setCard(Card newCard){
-        currentCard = newCard;
+
+            private void update() {
+            }
+
+            @Override
+            public void handle(long now) {
+                if (lastUpdate < 0) {
+                    lastUpdate = now;
+                    return;
+                }
+
+                deltaTime = (now - lastUpdate) / 1_000_000_000.0;
+                update();
+                lastUpdate = now;
+            }
+        }.start();
+    }
+
+
+    public void setCard(Card card) {
+        this.currentCard = card;
+
+        if (card.scryfall_id() != null) {
+            cardID.setText(String.valueOf(card.scryfall_id()));
+        }
+
+        boolean hasFaces = card.card_faces() != null;
+
+
+
+        String name = card.name();
+        String cost = hasFaces ? card.card_faces().getFirst().mana_cost() : card.mana_cost(); // TEMP FIX UNTIL NEW DOUBLE-SIDED CARD PANE IS MADE
+        String type = hasFaces ? card.card_faces().getFirst().type_line() : card.type();
+        String set = card.set_name();
+        String desc = hasFaces ? card.card_faces().getFirst().oracle_text() : card.oracle_text();
+
+        if (name != null) cardNameLabel.setText(name);
+        if (cost != null) cardCostLabel.setText(cost);
+        if (type != null) cardTypeLabel.setText(type);
+        if (set != null) cardSetLabel.setText(set);
+        if (desc != null) {
+            cardDescFlow.getChildren().clear();
+            cardDescFlow.getChildren().addAll(CardUtils.renderOracleText(desc).getChildren());
+        }
+
+        loadImage();
+    }
+
+    public void loadImage(){
+        if(!cardImageLoaded) {
+            cardImageLoaded=true;
+            cardImageView.setImage(CardUtils.getCardImage(getCard()));
+        }
     }
 
     private void adjustRulingsDialog(){
@@ -450,5 +512,7 @@ public class CardPaneController {
         }
         pricePaneContainer.getChildren().addAll(CardUtils.getScrapedCardPanes(getCard()));
     }
+
+
 
 }

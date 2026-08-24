@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,13 +27,31 @@ public class ApplicationManager extends Application {
 
     static Browser scrapeBrowser;
 
+    public static Font MANA;
+    public static Font UI_BOLD;
+
     @Override
     public void start(Stage stage) throws IOException {
         appStage = stage;
         stage.setResizable(false);
         stage.setFullScreen(false);
+
+        MANA = Font.loadFont(getClass().getResourceAsStream("assets/fonts/mana.ttf"),24);
+        if(MANA ==null){
+            MANA = Font.getDefault();
+            System.err.println("WARNING: MANA FONT NOT LOADED");
+        }
+
+        UI_BOLD = Font.font("Arial", FontWeight.BOLD,14);
+        if(UI_BOLD ==null){
+            UI_BOLD = Font.getDefault();
+            System.err.println("WARNING: UI_BOLD FONT NOT LOADED");
+        }
+
         setApplicationScene("menu-view.fxml","Menu");
     }
+
+
 
     public static void setScrapeBrowser(Browser setBrowser){
         scrapeBrowser = setBrowser;
@@ -75,6 +95,23 @@ public class ApplicationManager extends Application {
             return new Scene((new FXMLLoader(ApplicationManager.class.getResource(fxmlPath))).load());
         } catch (IOException e) {
             return new Scene(new Pane(new Label("FXML DIDN'T LOAD")),DEFAULT_WINDOW_WIDTH,DEFAULT_WINDOW_HEIGHT);
+        }
+    }
+
+    public record LoadedView<T>(Parent root, T controller) {
+    }
+
+
+    public static <T> LoadedView<T> loadFXML(String fxmlPath){
+        try{
+            FXMLLoader loader = new FXMLLoader(ApplicationManager.class.getResource(fxmlPath));
+            Parent root = loader.load();
+            T controller = loader.getController();
+
+            return new LoadedView<>(root, controller);
+
+        } catch (IOException e) {
+            throw new RuntimeException("failed to load fxml: " + fxmlPath, e);
         }
     }
 }

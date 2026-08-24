@@ -42,7 +42,7 @@
                </LinearGradient>
             </fill>
          </Rectangle>
-         <ScrollPane hbarPolicy="NEVER" maxHeight="630.0" maxWidth="480.0" minHeight="630.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" vbarPolicy="ALWAYS">
+         <ScrollPane fx:id="cardScrollPane" hbarPolicy="NEVER" maxHeight="630.0" maxWidth="480.0" minHeight="630.0" minWidth="480.0" prefHeight="630.0" prefWidth="480.0" vbarPolicy="ALWAYS">
             <content>
                <TilePane fx:id="cardPaneContainer" maxWidth="480.0" minWidth="480.0" prefHeight="630.0" prefWidth="487.0" />
             </content>

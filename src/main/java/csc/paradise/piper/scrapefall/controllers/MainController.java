@@ -8,6 +8,7 @@ import csc.paradise.piper.scrapefall.models.Scraper;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -26,6 +28,7 @@ import net.dzultra.jsa.ScryfallClient;
 import net.dzultra.jsa.cards.Card;
 import net.dzultra.jsa.cards.CardList;
 import net.dzultra.jsa.cards.CardRequester;
+import net.dzultra.jsa.cards.enums.CardIDType;
 import net.dzultra.jsa.cards.enums.OrderMode;
 import net.dzultra.jsa.exceptions.CardSearchException;
 
@@ -43,6 +46,8 @@ import java.util.regex.Pattern;
 public class MainController {
     @FXML
     private TilePane cardPaneContainer;
+    @FXML
+    private ScrollPane cardScrollPane;
     @FXML
     private Button scrapeButton;
     @FXML
@@ -71,6 +76,12 @@ public class MainController {
     @FXML
     protected void initialize() {
         cardRequester = new CardRequester(new ScryfallClient("Scrape-Fall"));
+
+        cardScrollPane.vvalueProperty().addListener((obs, oldVal, newVal) -> {
+            System.out.println("hi");
+            checkVisibleNodes();
+        });
+
         frameLoop();
     }
 
@@ -92,42 +103,12 @@ public class MainController {
         cardPaneContainer.getChildren().clear();
 
         for (Card card : cards.cards()) {
-            AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("card-pane.fxml");
-            for (Node child : tempPane.getChildren()) {
-                if (child instanceof Label labelNode) {
-                    String text;
-                    if(card.card_faces()!=null){
-                        text = switch (labelNode.getId()) {
-                            case "cardNameLabel" -> card.name();
-                            case "cardCostLabel" -> card.card_faces().getFirst().mana_cost();
-                            case "cardTypeLabel" -> card.card_faces().getFirst().type_line();
-                            case "cardSetLabel" -> card.set_name();
-                            case "cardDescLabel" -> card.card_faces().getFirst().oracle_text();
-                            case null, default -> "";
-                        };
-                    }else{
-                        text = switch (labelNode.getId()) {
-                            case "cardNameLabel" -> card.name();
-                            case "cardCostLabel" -> card.mana_cost();
-                            case "cardTypeLabel" -> card.type();
-                            case "cardSetLabel" -> card.set_name();
-                            case "cardDescLabel" -> card.oracle_text();
-                            case null, default -> "";
-                        };
-                    }
-                    if (text != null) {
-                        labelNode.setText(text);
-                    }
-                } else if (child instanceof ImageView childImageView) {
-                    childImageView.setImage(CardUtils.getCardImage(card));
-                } else if (child instanceof Text) {
-                    if (child.getId().equalsIgnoreCase("cardID")) {
-                        ((Text) child).setText(String.valueOf(card.scryfall_id()));
-                    }
-                }
+            ApplicationManager.LoadedView<CardPaneController> loadedView = ApplicationManager.loadFXML("card-pane.fxml");
+            CardPaneController cpc = loadedView.controller();
 
-            }
-            cardPaneContainer.getChildren().add(tempPane);
+            cpc.setCard(card);
+            loadedView.root().setUserData(loadedView.controller());
+            cardPaneContainer.getChildren().add(loadedView.root());
         }
     }
 
@@ -198,5 +179,14 @@ public class MainController {
 
     public void onQueryFieldTextChanged(KeyEvent inputMethodEvent) {
         query = queryField.getText();
+    }
+
+    public void checkVisibleNodes() {
+        for (Node node : cardPaneContainer.getChildren()){
+            if(NodeUtils.isNodeVisible(node, cardScrollPane) && node.getUserData() instanceof CardPaneController visibleCard){
+                visibleCard.loadImage();
+            }
+        }
+
     }
 }
