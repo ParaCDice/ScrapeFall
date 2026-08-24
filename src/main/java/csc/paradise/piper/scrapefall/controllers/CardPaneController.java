@@ -3,6 +3,7 @@ package csc.paradise.piper.scrapefall.controllers;
 import csc.paradise.piper.scrapefall.ApplicationManager;
 import csc.paradise.piper.scrapefall.models.CardUtils;
 import csc.paradise.piper.scrapefall.models.NodeUtils;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,6 +23,7 @@ import net.dzultra.jsa.cards.enums.CardIDType;
 import net.dzultra.jsa.sets.SetRequester;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -69,13 +71,15 @@ public class CardPaneController {
         rulingsFxml = ApplicationManager.getNodesFromFXML("rulings-dialog.fxml");
     }
 
+
     public Card getCard(){
         if(currentCard==null) {
-            return cardRequester.getCardById(cardID.getText(), CardIDType.SCRYFALL);
-        }else{
+            currentCard = cardRequester.getCardById(cardID.getText(), CardIDType.SCRYFALL);
             return currentCard;
         }
+        return currentCard;
     }
+
 
     private void setCard(Card newCard){
         currentCard = newCard;

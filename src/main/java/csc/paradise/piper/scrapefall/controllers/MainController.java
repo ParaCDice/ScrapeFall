@@ -95,14 +95,26 @@ public class MainController {
             AnchorPane tempPane = (AnchorPane) ApplicationManager.getNodesFromFXML("card-pane.fxml");
             for (Node child : tempPane.getChildren()) {
                 if (child instanceof Label labelNode) {
-                    String text = switch (labelNode.getId()) {
-                        case "cardNameLabel" -> card.name();
-                        case "cardCostLabel" -> card.mana_cost();
-                        case "cardTypeLabel" -> card.type();
-                        case "cardSetLabel" -> card.set_name();
-                        case "cardDescLabel" -> card.oracle_text();
-                        case null, default -> "";
-                    };
+                    String text;
+                    if(card.card_faces()!=null){
+                        text = switch (labelNode.getId()) {
+                            case "cardNameLabel" -> card.name();
+                            case "cardCostLabel" -> card.card_faces().getFirst().mana_cost();
+                            case "cardTypeLabel" -> card.card_faces().getFirst().type_line();
+                            case "cardSetLabel" -> card.set_name();
+                            case "cardDescLabel" -> card.card_faces().getFirst().oracle_text();
+                            case null, default -> "";
+                        };
+                    }else{
+                        text = switch (labelNode.getId()) {
+                            case "cardNameLabel" -> card.name();
+                            case "cardCostLabel" -> card.mana_cost();
+                            case "cardTypeLabel" -> card.type();
+                            case "cardSetLabel" -> card.set_name();
+                            case "cardDescLabel" -> card.oracle_text();
+                            case null, default -> "";
+                        };
+                    }
                     if (text != null) {
                         labelNode.setText(text);
                     }
