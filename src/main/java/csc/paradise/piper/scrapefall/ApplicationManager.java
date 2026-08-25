@@ -2,6 +2,7 @@ package csc.paradise.piper.scrapefall;
 
 import com.microsoft.playwright.Browser;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -41,11 +42,8 @@ public class ApplicationManager extends Application {
         appStage = stage;
         stage.setResizable(false);
         stage.setFullScreen(false);
-
         setApplicationScene("menu-view.fxml","Menu");
     }
-
-
 
     public static void setScrapeBrowser(Browser setBrowser){
         scrapeBrowser = setBrowser;

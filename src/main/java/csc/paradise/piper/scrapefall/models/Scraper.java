@@ -71,8 +71,9 @@ public class Scraper {
             String set = card.get("foreign_obj").getAsJsonObject().get("set_code").getAsString();
             int quantity = card.get("total_quantity").getAsInt();
             String collector_number = card.get("foreign_obj").getAsJsonObject().get("collector_number").getAsString();
+            String permaLink = card.get("permalink").getAsString();
 
-            cards.add(new ScrapedCard(name,price,set,quantity,collector_number));
+            cards.add(new ScrapedCard(name,price,set,quantity,collector_number,permaLink));
         }
 
         return cards;

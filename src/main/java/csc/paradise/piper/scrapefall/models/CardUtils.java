@@ -31,6 +31,7 @@ public class CardUtils {
 
             loadedView.root().setUserData(ppc);
             ppc.setPrice(scrapedCard.cardPrice);
+            ppc.setHalfPermaLink(scrapedCard.permaLink);
             allScrapeCardPanes.add((AnchorPane) loadedView.root());
         }
 

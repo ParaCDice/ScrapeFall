@@ -10,13 +10,23 @@ public class ScrapedCard {
     BigDecimal cardPrice;
     int quantity;
     String collectorNum;
+    String permaLink;
 
-    public ScrapedCard(String cardName, BigDecimal cardPrice, String cardSet, int quantity, String collectorNumber) {
+    public ScrapedCard(String cardName, BigDecimal cardPrice, String cardSet, int quantity, String collectorNumber, String permaLink) {
         setCardName(cardName);
         setCardPrice(cardPrice);
         setCardSet(cardSet);
         setQuantity(quantity);
         setCollectorNum(collectorNumber);
+        setPermaLink(permaLink);
+    }
+
+    public String getPermaLink() {
+        return permaLink;
+    }
+
+    private void setPermaLink(String permaLink) {
+        this.permaLink = permaLink;
     }
 
     public String getCardName() {
