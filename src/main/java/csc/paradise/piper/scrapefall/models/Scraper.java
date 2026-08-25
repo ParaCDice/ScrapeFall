@@ -58,7 +58,16 @@ public class Scraper {
         for (JsonElement cardElement : responseJson.get("data").getAsJsonArray()){
             JsonObject card = cardElement.getAsJsonObject();
             String name = card.get("name").getAsString();
-            BigDecimal price = card.get("sell_price_max").getAsBigDecimal();
+            JsonElement priceMax = card.get("sell_price_max");
+            JsonElement priceMin = card.get("sell_price_min");
+            BigDecimal price;
+            if(priceMax!=null) {
+                price = card.get("sell_price_max").getAsBigDecimal();
+            }else if (priceMin != null){
+                price = card.get("sell_price_min").getAsBigDecimal();
+            }else{
+                price = BigDecimal.ZERO;
+            }
             String set = card.get("foreign_obj").getAsJsonObject().get("set_code").getAsString();
             int quantity = card.get("total_quantity").getAsInt();
             String collector_number = card.get("foreign_obj").getAsJsonObject().get("collector_number").getAsString();

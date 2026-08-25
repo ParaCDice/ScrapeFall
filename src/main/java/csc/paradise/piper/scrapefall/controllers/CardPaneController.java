@@ -2,17 +2,16 @@ package csc.paradise.piper.scrapefall.controllers;
 
 import csc.paradise.piper.scrapefall.ApplicationManager;
 import csc.paradise.piper.scrapefall.models.CardUtils;
+import csc.paradise.piper.scrapefall.models.ManaRenderer;
 import csc.paradise.piper.scrapefall.models.NodeUtils;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,11 +23,8 @@ import net.dzultra.jsa.cards.CardRequester;
 import net.dzultra.jsa.cards.enums.CardIDType;
 import net.dzultra.jsa.sets.SetRequester;
 
-import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CardPaneController {
     @FXML
@@ -44,7 +40,7 @@ public class CardPaneController {
     @FXML
     public Label cardNameLabel;
     @FXML
-    public Label cardCostLabel;
+    public TextFlow cardCostFlow;
     @FXML
     public Label cardTypeLabel;
     @FXML
@@ -129,12 +125,15 @@ public class CardPaneController {
         String desc = hasFaces ? card.card_faces().getFirst().oracle_text() : card.oracle_text();
 
         if (name != null) cardNameLabel.setText(name);
-        if (cost != null) cardCostLabel.setText(cost);
+        if (cost != null) {
+            cardCostFlow.getChildren().clear();
+            cardCostFlow.getChildren().addAll(ManaRenderer.renderCostText(cost));
+        }
         if (type != null) cardTypeLabel.setText(type);
         if (set != null) cardSetLabel.setText(set);
         if (desc != null) {
             cardDescFlow.getChildren().clear();
-            cardDescFlow.getChildren().addAll(CardUtils.renderOracleText(desc).getChildren());
+            cardDescFlow.getChildren().addAll(ManaRenderer.renderOracleText(desc));
         }
 
         loadImage();
@@ -510,7 +509,7 @@ public class CardPaneController {
         if(pricePaneContainer==null) {
             findPricePaneContainer();
         }
-        pricePaneContainer.getChildren().addAll(CardUtils.getScrapedCardPanes(getCard()));
+        pricePaneContainer.getChildren().addAll(CardUtils.createScrapedCardPanes(getCard()));
     }
 
 

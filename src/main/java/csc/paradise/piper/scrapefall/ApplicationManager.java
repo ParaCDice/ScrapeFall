@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,26 +26,21 @@ public class ApplicationManager extends Application {
 
     static Browser scrapeBrowser;
 
-    public static Font MANA;
-    public static Font UI_BOLD;
+    public static final String MANA_FONT_FAMILY;
+
+    static {
+        Font loaded = Font.loadFont(
+                ApplicationManager.class.getResourceAsStream("/csc/paradise/piper/scrapefall/assets/fonts/mana.ttf"),
+                16
+        );
+        MANA_FONT_FAMILY = (loaded != null) ? loaded.getFamily() : "Serif"; // fallback family
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
         appStage = stage;
         stage.setResizable(false);
         stage.setFullScreen(false);
-
-        MANA = Font.loadFont(getClass().getResourceAsStream("assets/fonts/mana.ttf"),24);
-        if(MANA ==null){
-            MANA = Font.getDefault();
-            System.err.println("WARNING: MANA FONT NOT LOADED");
-        }
-
-        UI_BOLD = Font.font("Arial", FontWeight.BOLD,14);
-        if(UI_BOLD ==null){
-            UI_BOLD = Font.getDefault();
-            System.err.println("WARNING: UI_BOLD FONT NOT LOADED");
-        }
 
         setApplicationScene("menu-view.fxml","Menu");
     }

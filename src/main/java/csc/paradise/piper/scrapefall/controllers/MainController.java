@@ -15,6 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -78,7 +79,6 @@ public class MainController {
         cardRequester = new CardRequester(new ScryfallClient("Scrape-Fall"));
 
         cardScrollPane.vvalueProperty().addListener((obs, oldVal, newVal) -> {
-            System.out.println("hi");
             checkVisibleNodes();
         });
 
@@ -154,15 +154,12 @@ public class MainController {
 
         for(Node node : descendents){
             try {
-                if (node.getId().equalsIgnoreCase("priceLabel")) {
+                if (node.getId().equalsIgnoreCase("pricePane")) {
                     try {
-                        Matcher priceMatcher = pricePattern.matcher(((Label) node).getText());
-                        System.out.println(priceMatcher.matches());
-                        totalPrice = totalPrice.add(new BigDecimal(priceMatcher.group(1)));
-                        System.out.println(totalPrice);
+                        BigDecimal price = ((ScrapedCardController) node.getUserData()).getPrice();
+                        totalPrice = totalPrice.add(price);
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        System.err.println("WARNING: COULD NOT GET PRICE FOR CARD");
+                        System.err.println("WARNING: Failed on node id=" + node.getId() + ": " + e.getClass().getSimpleName() + " - " + e.getMessage());
                     }
                 }
             }catch (NullPointerException ignored){}
@@ -186,6 +183,14 @@ public class MainController {
             if(NodeUtils.isNodeVisible(node, cardScrollPane) && node.getUserData() instanceof CardPaneController visibleCard){
                 visibleCard.loadImage();
             }
+        }
+
+    }
+
+    public void onKeyPressed(KeyEvent keyEvent) {
+
+        if(keyEvent.getCode()== KeyCode.ENTER){
+            getCards();
         }
 
     }
