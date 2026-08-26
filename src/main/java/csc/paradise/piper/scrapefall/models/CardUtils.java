@@ -40,13 +40,17 @@ public class CardUtils {
 
     public static Image getCardImage(Card card) {
         try {
-            String urlString;
-            if (card.card_faces() == null) {
-                urlString = Objects.requireNonNull(card.image_uris()).normal().toString();
-            } else {
-                urlString = Objects.requireNonNull(card.card_faces().getFirst().image_uris()).normal().toString();
-            }
-            return new Image(urlString, true);
+            return new Image(Objects.requireNonNull(card.image_uris()).normal().toString(), true);
+        } catch (NullPointerException e) {
+            System.err.println("WARNING: Card (" + card.name() + ") image won't load.");
+            return placeholderImage();
+        }
+    }
+
+    public static Image getDoubleCardImage(Card card, boolean front) {
+        try {
+            Card.ImageURIs side = front ? card.card_faces().getFirst().image_uris() : card.card_faces().getLast().image_uris();
+            return new Image(Objects.requireNonNull(side).normal().toString(), true);
         } catch (NullPointerException e) {
             System.err.println("WARNING: Card (" + card.name() + ") image won't load.");
             return placeholderImage();

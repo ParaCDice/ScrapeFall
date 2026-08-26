@@ -14,6 +14,7 @@ module csc.paradise.piper.scrapefall {
     requires java.desktop;
     requires com.google.gson;
     requires javafx.graphics;
+    requires javafx.base;
 
     opens csc.paradise.piper.scrapefall to javafx.fxml;
     exports csc.paradise.piper.scrapefall;

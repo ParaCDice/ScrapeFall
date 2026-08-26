@@ -1,6 +1,10 @@
 package csc.paradise.piper.scrapefall.controllers;
 
 import csc.paradise.piper.scrapefall.models.CardUtils;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
+import javafx.util.Duration;
 import net.dzultra.jsa.cards.Card;
 
 import java.awt.*;
@@ -59,7 +64,7 @@ public class ScrapedCardController {
     }
 
     @FXML
-    public void onLinkClicked(){ // "https://www.oasisgamesslc.com/shop/magic/" + getHalfPermaLink()
+    public void onLinkClicked(){
         try {
             Desktop.getDesktop().browse(new URL("https://www.oasisgamesslc.com/shop/magic/" + getHalfPermaLink()).toURI());
         } catch (IOException e) {

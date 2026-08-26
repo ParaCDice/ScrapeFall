@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="cardPane" focusTraversable="true" maxHeight="250.0" maxWidth="480.0" minHeight="250.0" minWidth="480.0" prefHeight="250.0" prefWidth="480.0" scaleShape="false" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.CardPaneController">
+<AnchorPane fx:id="cardPane" focusTraversable="true" maxHeight="250.0" maxWidth="480.0" minHeight="250.0" minWidth="480.0" prefHeight="250.0" prefWidth="480.0" scaleShape="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.CardPaneController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="250.0" stroke="BLACK" strokeType="INSIDE" width="480.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8a8a8" height="250.0" stroke="#a1a1a1" strokeType="INSIDE" strokeWidth="0.0" width="182.0" />
@@ -22,17 +22,18 @@
          <font>
             <Font size="10.0" />
          </font></Label>
-        <Button fx:id="rulingsButton" layoutX="253.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#onRulingsClicked" prefHeight="25.0" prefWidth="62.0" text="Rulings" />
+        <Button fx:id="rulingsButton" layoutX="333.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#onRulingsClicked" prefHeight="25.0" prefWidth="62.0" text="Rulings" />
         <Label fx:id="cardSetLabel" layoutX="188.0" layoutY="39.0" prefHeight="17.0" prefWidth="227.0" text="Card Set">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
       <Button fx:id="scrapeButton" layoutX="401.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#onScrapeClicked" prefHeight="25.0" prefWidth="53.0" text="Scrape" />
-      <Text fx:id="cardID" disable="true" layoutX="3.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <Text fx:id="cardID" disable="true" layoutX="3.0" layoutY="12.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font size="1.0" />
          </font>
       </Text>
+      <Button fx:id="linkButton" layoutX="186.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Open In Browser" onMouseClicked="#onLinkClicked" />
     </children>
 </AnchorPane>

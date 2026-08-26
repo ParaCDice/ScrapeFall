@@ -40,6 +40,14 @@ public class ApplicationManager extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         appStage = stage;
+        Font.loadFont(ApplicationManager.class.getResourceAsStream("/csc/paradise/piper/scrapefall/assets/fonts/Planewalker.ttf"),16);
+        if(Font.font("Planewalker",16)==null){
+            System.err.println("WARNING: Planewalker font not loaded.");
+        }
+        Font.loadFont(ApplicationManager.class.getResourceAsStream("/csc/paradise/piper/scrapefall/assets/fonts/Magicmedieval.ttf"),16);
+        if(Font.font("MagicMedieval",16)==null){
+            System.err.println("WARNING: MagicMedieval font not loaded.");
+        }
         stage.setResizable(false);
         stage.setFullScreen(false);
         setApplicationScene("menu-view.fxml","Menu");
@@ -103,7 +111,11 @@ public class ApplicationManager extends Application {
             return new LoadedView<>(root, controller);
 
         } catch (IOException e) {
-            throw new RuntimeException("failed to load fxml: " + fxmlPath, e);
+            e.printStackTrace();
+            System.err.println("WARNING: FXML for " + fxmlPath + " did not load.");
+            return new LoadedView<>((new Pane(new Label("FXML DID NOT LOAD"))), null );
         }
     }
+
+
 }

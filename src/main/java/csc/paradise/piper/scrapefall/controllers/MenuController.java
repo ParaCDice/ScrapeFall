@@ -21,32 +21,19 @@ public class MenuController {
     public Label titleLabel;
 
     @FXML
-    protected void initialize(){
-        choiceBox.setItems(FXCollections.observableArrayList("OasisGames","TCGPlayer","Custom"));
+    protected void initialize() {
+        choiceBox.setItems(FXCollections.observableArrayList("OasisGames", "TCGPlayer"));
+        choiceBox.getSelectionModel().select(0);
     }
 
     @FXML
     protected void onContinueClick() {
         errorLabel.setText("");
-        switch (choiceBox.getSelectionModel().getSelectedIndex()){
-            case 0:{
-                ApplicationManager.setStoredChoice(choiceBox.getSelectionModel().getSelectedItem());
-                ApplicationManager.setApplicationScene("main-view.fxml",choiceBox.getSelectionModel().getSelectedItem());
-                break;
-            }
-            case 1,2:{
-                errorLabel.setText("NOT IMPLEMENTED");
-                break;
-            }
-            default:{
-                errorLabel.setText("SELECT AN OPTION");
-                break;
-            }
+        if (choiceBox.getSelectionModel().getSelectedItem().equalsIgnoreCase("OasisGames")) {
+            ApplicationManager.setStoredChoice(choiceBox.getSelectionModel().getSelectedItem());
+            ApplicationManager.setApplicationScene("main-view.fxml", choiceBox.getSelectionModel().getSelectedItem());
+        } else {
+            errorLabel.setText("NOT IMPLEMENTED");
         }
-    }
-
-    @FXML
-    protected void onExit(){
-        System.exit(0);
     }
 }

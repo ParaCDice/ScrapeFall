@@ -4,11 +4,13 @@ import csc.paradise.piper.scrapefall.ApplicationManager;
 import csc.paradise.piper.scrapefall.models.CardUtils;
 import csc.paradise.piper.scrapefall.models.ManaRenderer;
 import csc.paradise.piper.scrapefall.models.NodeUtils;
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +25,10 @@ import net.dzultra.jsa.cards.CardRequester;
 import net.dzultra.jsa.cards.enums.CardIDType;
 import net.dzultra.jsa.sets.SetRequester;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +55,8 @@ public class CardPaneController {
     public TextFlow cardDescFlow;
     @FXML
     public ImageView cardImageView;
+    @FXML
+    public Button linkButton;
 
     Color notLegalColor = Color.rgb(174,174,174);
     Color legalColor = Color.rgb(117,152,110);
@@ -71,7 +79,6 @@ public class CardPaneController {
     @FXML
     protected void initialize(){
         rulingsFxml = ApplicationManager.getNodesFromFXML("rulings-dialog.fxml");
-        frameLoop();
     }
 
 
@@ -83,30 +90,6 @@ public class CardPaneController {
         return currentCard;
     }
 
-    public void frameLoop() {
-        new AnimationTimer() {
-            long lastUpdate = -1;
-            double deltaTime;
-
-
-            private void update() {
-            }
-
-            @Override
-            public void handle(long now) {
-                if (lastUpdate < 0) {
-                    lastUpdate = now;
-                    return;
-                }
-
-                deltaTime = (now - lastUpdate) / 1_000_000_000.0;
-                update();
-                lastUpdate = now;
-            }
-        }.start();
-    }
-
-
     public void setCard(Card card) {
         this.currentCard = card;
 
@@ -114,26 +97,25 @@ public class CardPaneController {
             cardID.setText(String.valueOf(card.scryfall_id()));
         }
 
+        // Still checking for double sided cards cause cards that have prepared spells, adventures, etc are considered double-sided when they really aren't.
         boolean hasFaces = card.card_faces() != null;
 
-
-
         String name = card.name();
-        String cost = hasFaces ? card.card_faces().getFirst().mana_cost() : card.mana_cost(); // TEMP FIX UNTIL NEW DOUBLE-SIDED CARD PANE IS MADE
-        String type = hasFaces ? card.card_faces().getFirst().type_line() : card.type();
+        String cost = hasFaces ? card.card_faces().getFirst().mana_cost() + " // " + card.card_faces().getLast().mana_cost(): card.mana_cost();
+        String type = hasFaces ? card.card_faces().getFirst().type_line() + " // " + card.card_faces().getLast().type_line() : card.type();
         String set = card.set_name();
-        String desc = hasFaces ? card.card_faces().getFirst().oracle_text() : card.oracle_text();
+        String desc = hasFaces ? card.card_faces().getFirst().oracle_text() + " // " + card.card_faces().getLast().oracle_text() : card.oracle_text();
 
         if (name != null) cardNameLabel.setText(name);
         if (cost != null) {
             cardCostFlow.getChildren().clear();
-            cardCostFlow.getChildren().addAll(ManaRenderer.renderCostText(cost));
+            cardCostFlow.getChildren().addAll(ManaRenderer.renderCardText(cost));
         }
         if (type != null) cardTypeLabel.setText(type);
         if (set != null) cardSetLabel.setText(set);
         if (desc != null) {
             cardDescFlow.getChildren().clear();
-            cardDescFlow.getChildren().addAll(ManaRenderer.renderOracleText(desc));
+            cardDescFlow.getChildren().addAll(ManaRenderer.renderCardText(desc));
         }
 
         loadImage();
@@ -502,6 +484,15 @@ public class CardPaneController {
                     pricePaneContainer = (TilePane) node;
                 }
             }
+        }
+    }
+
+    public void onLinkClicked(MouseEvent mouseEvent){
+        try {
+            Desktop.getDesktop().browse(getCard().scryfall_uri());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("WARNING: BROWSER WILL NOT LAUNCH.");
         }
     }
 

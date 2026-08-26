@@ -1,0 +1,118 @@
+
+.homepage {
+    -fx-background-color: linear-gradient(from 50.0% 0.0% to 50.0% 100.0%, #240036 0.0%, #1d1c25 0.6711%, #431e3f 100.0%);
+}
+
+.homepage-rectangle {
+    -fx-fill: linear-gradient(from 50.0% 0.0% to 50.0% 100.0%, #240036 0.0%, #1d1c25 0.6711%, #431e3f 100.0%);
+    -fx-stroke-width: 0;
+}
+
+.scroll-pane {
+    -fx-background-color: #000000;
+}
+
+.scroll-bar {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #2b2b2b;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.scroll-bar .track-background {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #5a2f7a;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #b57bd5;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #9864a4;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}
+
+.text-field {
+    -fx-font-family: Planewalker;
+    -fx-text-fill: #ffffff;
+    -fx-fill: #ffffff;
+    -fx-background-color: #242031;
+}
+
+.pane-background {
+    -fx-background-color: linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, #431e3f 0.0%, #1d1c25 100.0%)
+}
+
+.rectangle-background {
+    -fx-fill: linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, #240036 0.0%, #bcbcbc 0.6711%, #727272 99.3289%, #727272 100.0%);
+    -fx-stroke-width: 0;
+    -fx-arc-height: 15;
+    -fx-arc-width: 15;
+}
+
+.label-background {
+    -fx-background-color: linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, #240036 0.0%, #bcbcbc 0.6711%, #727272 99.3289%, #727272 100.0%);
+}
+
+.textTitle {
+    -fx-font-family: MagicMedieval;
+}
+
+.label, .text {
+    -fx-font-family: Planewalker;
+}
+
+.error {
+    -fx-fill: #FF0000FF;
+}
+
+.button {
+    -fx-font-family: Planewalker;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffffff99;
+    -fx-background-color: rgba(150, 150, 150, 0.50);
+}
+
+.button:hover {
+    -fx-border-color: #ffffff;
+    -fx-background-color: rgba(150, 150, 150, 0.75);
+}
+
+.choice-box {
+    -fx-font-family: Planewalker;
+    -fx-fill: #ffffff;
+    -fx-border-color: #541a8a80;
+    -fx-background-color: rgba(150, 150, 150, 0.50);
+    -fx-effect: dropshadow(one-pass-box, rgba(242, 0, 255, 0.25), 15 ,0 , -1, 1);
+}
+
+.choice-box:hover{
+    -fx-border-color: rgba(117, 45, 185, 0.5);
+    -fx-background-color: rgba(150, 150, 150, 0.75);
+}
