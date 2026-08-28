@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pricePane" maxHeight="75.0" maxWidth="200.0" minHeight="75.0" minWidth="200.0" prefHeight="75.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.ScrapedCardController">
+        <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeee" height="75.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aeaeae" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="55.0" />
+            <Label fx:id="setLabel" layoutX="55.0" layoutY="9.0" prefHeight="17.0" prefWidth="144.0" text="Card Set">
+                <font>
+                    <Font size="11.0" />
+                </font>
+            </Label>
+            <Label fx:id="nameLabel" layoutX="55.0" prefHeight="17.0" prefWidth="144.0" text="Card Name" />
+            <Label fx:id="priceLabel" layoutX="55.0" layoutY="48.0" prefHeight="17.0" prefWidth="144.0" text="Card Price">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="30.0" text="Card Img">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Label>
+            <ImageView fx:id="cardImageView" fitHeight="75.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="removeButton" layoutX="156.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onRemove" prefHeight="26.0" prefWidth="26.0" text="X" />
+      <Hyperlink fx:id="cardLink" maxHeight="75.0" maxWidth="55.0" minHeight="75.0" minWidth="55.0" prefHeight="75.0" prefWidth="55.0" onMouseClicked="#onLinkClicked" />
+        </children>
+</AnchorPane>

@@ -98,24 +98,4 @@ public class ApplicationManager extends Application {
         }
     }
 
-    public record LoadedView<T>(Parent root, T controller) {
-    }
-
-
-    public static <T> LoadedView<T> loadFXML(String fxmlPath){
-        try{
-            FXMLLoader loader = new FXMLLoader(ApplicationManager.class.getResource(fxmlPath));
-            Parent root = loader.load();
-            T controller = loader.getController();
-
-            return new LoadedView<>(root, controller);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("WARNING: FXML for " + fxmlPath + " did not load.");
-            return new LoadedView<>((new Pane(new Label("FXML DID NOT LOAD"))), null );
-        }
-    }
-
-
 }

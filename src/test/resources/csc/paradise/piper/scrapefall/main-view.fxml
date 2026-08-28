@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="theBox" alignment="CENTER" onKeyPressed="#onKeyPressed" prefHeight="800.0" prefWidth="739.0" stylesheets="@general.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc.paradise.piper.scrapefall.controllers.MainController">
+   <Pane fx:id="test" prefHeight="800.0" prefWidth="679.0">
+       <children>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="800.0" stroke="BLACK" strokeLineJoin="ROUND" styleClass="homepage-rectangle" width="739.0" />
+         <ScrollPane fx:id="cardScrollPane" hbarPolicy="NEVER" maxHeight="630.0" maxWidth="495.0" minHeight="630.0" minWidth="480.0" prefHeight="630.0" prefWidth="495.0" style="-fx-background-color: black;" vbarPolicy="ALWAYS">
+            <content>
+               <TilePane fx:id="cardPaneContainer" maxWidth="481.0" minWidth="480.0" prefHeight="630.0" prefWidth="481.0" styleClass="pane-background" />
+            </content>
+         </ScrollPane>
+         <Label fx:id="cardsErrorLabel" alignment="CENTER" focusTraversable="false" layoutX="2.0" layoutY="243.0" mouseTransparent="true" prefHeight="98.0" prefWidth="466.0" textFill="RED">
+            <font>
+               <Font size="32.0" />
+            </font>
+         </Label>
+         <ScrollPane hbarPolicy="NEVER" layoutX="509.0" layoutY="59.0" prefHeight="605.0" prefWidth="200.0" vbarPolicy="NEVER">
+            <content>
+               <TilePane fx:id="pricePaneContainer" maxWidth="200.0" minWidth="200.0" prefHeight="605.0" prefWidth="200.0" styleClass="pane-background" />
+            </content>
+         </ScrollPane>
+         <Label fx:id="scrapeErrorLabel" alignment="CENTER" focusTraversable="false" layoutX="509.0" layoutY="266.0" mouseTransparent="true" prefHeight="98.0" prefWidth="200.0" textFill="RED">
+            <font>
+               <Font size="32.0" />
+            </font>
+         </Label>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="66.0" layoutY="631.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="495.0" />
+         <TextField fx:id="queryField" layoutX="4.0" layoutY="636.0" onKeyTyped="#onQueryFieldTextChanged" prefHeight="25.0" prefWidth="392.0" promptText="Enter Scryfall Prompt" />
+         <Button fx:id="getCardsButton" layoutX="409.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#getCards" prefHeight="27.0" prefWidth="79.0" text="Get Cards" />
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="34.0" layoutX="507.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+         <Label alignment="CENTER" layoutX="510.0" layoutY="18.0" prefHeight="27.0" prefWidth="194.0" text="Scraped Cards">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfcfcf" height="34.0" layoutX="509.0" layoutY="672.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+         <Text layoutX="510.0" layoutY="694.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price:" wrappingWidth="79.13671875">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Label fx:id="totalPriceLabelBackDrop" layoutX="587.0" layoutY="671.0" prefHeight="34.0" prefWidth="123.0" text="\$0.00">
+            <font>
+               <Font size="14.0" />
+            </font>
+            <effect>
+               <Glow level="1.0">
+                  <input>
+                     <ColorAdjust brightness="1.0" />
+                  </input>
+               </Glow>
+            </effect>
+         </Label>
+         <Label fx:id="totalPriceLabel" layoutX="587.0" layoutY="677.0" prefHeight="25.0" prefWidth="123.0" text="\$0.00">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Button layoutX="565.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#onExit" prefHeight="68.0" prefWidth="160.0" text="Exit">
+            <font>
+               <Font size="31.0" />
+            </font>
+         </Button>
+         <Button fx:id="lastPageButton" layoutX="287.0" layoutY="665.0" mnemonicParsing="false" onMouseClicked="#onPrevPage" prefHeight="27.0" prefWidth="101.0" text="Previous Page" />
+         <Button fx:id="nextPageButton" layoutX="401.0" layoutY="665.0" mnemonicParsing="false" onMouseClicked="#onNextPage" prefHeight="25.0" prefWidth="79.0" text="Next Page" />
+         <ChoiceBox fx:id="sortModeChoiceBox" layoutX="73.0" layoutY="664.0" prefHeight="25.0" prefWidth="110.0" />
+         <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="668.0" prefHeight="17.0" prefWidth="69.0" text="Sort Mode : " textAlignment="RIGHT" />
+         <ChoiceBox fx:id="sortDirChoiceBox" layoutX="189.0" layoutY="665.0" prefHeight="25.0" prefWidth="92.0" />
+         <Label alignment="CENTER" layoutX="181.0" layoutY="668.0" prefHeight="17.0" prefWidth="8.0" text=":" textAlignment="RIGHT" />
+      </children>
+   </Pane>
+</VBox>

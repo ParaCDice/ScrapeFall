@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TilePane alignment="CENTER_LEFT" prefHeight="225.0" prefWidth="150.0" tileAlignment="CENTER_RIGHT" vgap="10.0">
+         <children>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="standardLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Standard" />
+                  <Text fx:id="standardLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="pioneerLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Pioneer" />
+                  <Text fx:id="pioneerLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="modernLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Modern" />
+                  <Text fx:id="modernLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="legacyLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Legacy" />
+                  <Text fx:id="legacyLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="vintageLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Vintage" />
+                  <Text fx:id="vintageLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="commanderLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Commander" />
+                  <Text fx:id="commanderLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="oathbreakerLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Oathbreaker" />
+                  <Text fx:id="oathbreakerLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </TilePane>
+      <TilePane alignment="CENTER_LEFT" layoutX="150.0" prefHeight="225.0" prefWidth="150.0" tileAlignment="CENTER_RIGHT" vgap="10.0">
+         <children>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="alchemyLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Alchemy" />
+                  <Text fx:id="alchemyLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="historicLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Historic" />
+                  <Text fx:id="historicLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="brawlLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Brawl" />
+                  <Text fx:id="brawlLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="compBrawlLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Comp. Brawl" />
+                  <Text fx:id="compBrawlLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="timelessLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Timeless" />
+                  <Text fx:id="timelessLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="pauperLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Pauper" />
+                  <Text fx:id="pauperLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="20.0" prefWidth="150.0">
+               <children>
+                  <Rectangle fx:id="pennyLegalBg" arcHeight="5.0" arcWidth="15.0" fill="#aeaeae" height="20.0" layoutX="2.0" layoutY="1.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="5.0" width="69.0" />
+                  <Label layoutX="76.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Penny" />
+                  <Text fx:id="pennyLegalTxt" fill="WHITE" layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT LEGAL" textAlignment="CENTER" wrappingWidth="69.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </TilePane>
+   </children>
+</AnchorPane>

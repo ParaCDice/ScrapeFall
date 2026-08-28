@@ -3,7 +3,7 @@ package csc.paradise.piper.scrapefall.controllers;
 import csc.paradise.piper.scrapefall.ApplicationManager;
 import csc.paradise.piper.scrapefall.models.CardUtils;
 import csc.paradise.piper.scrapefall.models.ManaRenderer;
-import csc.paradise.piper.scrapefall.models.NodeUtils;
+import csc.paradise.piper.scrapefall.NodeUtils;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -27,8 +27,6 @@ import net.dzultra.jsa.sets.SetRequester;
 
 import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +95,14 @@ public class DoubleCardPaneController {
     }
 
     public void setCard(Card card) {
+        if(card==null){
+            throw new NullPointerException("ERROR: CARD IS NULL");
+        } else if(!CardUtils.isCardReal(card)){
+            throw new IllegalArgumentException("ERROR: CARD ISN'T REAL");
+        } else if (!CardUtils.isCardRealDoubleSided(card)) {
+            throw new IllegalArgumentException("ERROR: CARD IS NOT DOUBLE-SIDED");
+        }
+
         this.currentCard = card;
 
         if (card.scryfall_id() != null) {

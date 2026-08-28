@@ -1,6 +1,6 @@
 package csc.paradise.piper.scrapefall.models;
 
-import csc.paradise.piper.scrapefall.ApplicationManager;
+import csc.paradise.piper.scrapefall.NodeUtils;
 import csc.paradise.piper.scrapefall.controllers.ScrapedCardController;
 import javafx.scene.image.*;
 import javafx.scene.layout.AnchorPane;
@@ -9,6 +9,7 @@ import net.dzultra.jsa.cards.Card;
 import net.dzultra.jsa.cards.CardRequester;
 import net.dzultra.jsa.cards.enums.Language;
 
+import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,8 @@ public class CardUtils {
         for (ScrapedCard scrapedCard : cards) {
             Card card = cardRequester.getCardBySetAndNumber(scrapedCard.cardSet, scrapedCard.collectorNum, Language.EN);
 
-            ApplicationManager.LoadedView<ScrapedCardController> loadedView = ApplicationManager.loadFXML("price-pane.fxml");
+            LoadedView<ScrapedCardController> loadedView;
+            loadedView = NodeUtils.loadFXML("price-pane.fxml");
             ScrapedCardController ppc = loadedView.controller();
 
             ppc.setCard(card, scrapedCard.getPriceAsString());
@@ -62,6 +64,14 @@ public class CardUtils {
         PixelFormat<IntBuffer> pixelFormat = PixelFormat.getIntArgbPreInstance();
         PixelBuffer<IntBuffer> pixelBuffer = new PixelBuffer<>(1, 1, intBuffer, pixelFormat);
         return new WritableImage(pixelBuffer);
+    }
+
+    public static boolean isCardRealDoubleSided(Card card) {
+        return card.card_faces() != null && card.card_faces().getLast().image_uris() != null;
+    }
+
+    public static boolean isCardReal(Card card) {
+        return !card.name().equalsIgnoreCase("");
     }
 
 }

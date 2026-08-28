@@ -1,8 +1,8 @@
 package csc.paradise.piper.scrapefall.controllers;
 
 import com.google.gson.Gson;
-import csc.paradise.piper.scrapefall.ApplicationManager;
-import csc.paradise.piper.scrapefall.models.NodeUtils;
+import csc.paradise.piper.scrapefall.models.LoadedView;
+import csc.paradise.piper.scrapefall.NodeUtils;
 import csc.paradise.piper.scrapefall.services.UserDataAccessor;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
@@ -21,6 +21,7 @@ import net.dzultra.jsa.cards.enums.OrderMode;
 import net.dzultra.jsa.cards.enums.SortMode;
 import net.dzultra.jsa.exceptions.CardSearchException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -122,7 +123,8 @@ public class MainController {
 
         for (Card card : currentCardList.cards()) {
             if (card.card_faces() != null && card.card_faces().getFirst().image_uris()!=null) {
-                ApplicationManager.LoadedView<DoubleCardPaneController> loadedView = ApplicationManager.loadFXML("double-card-pane.fxml");
+                LoadedView<DoubleCardPaneController> loadedView;
+                loadedView = NodeUtils.loadFXML("double-card-pane.fxml");
                 DoubleCardPaneController cpc = loadedView.controller();
                 try {
                     cpc.setCard(card);
@@ -133,7 +135,8 @@ public class MainController {
                     System.err.println("WARNING: FXML for " + card.name() + " did not load.");
                 }
             } else {
-                ApplicationManager.LoadedView<CardPaneController> loadedView = ApplicationManager.loadFXML("card-pane.fxml");
+                LoadedView<CardPaneController> loadedView;
+                loadedView = NodeUtils.loadFXML("card-pane.fxml");
                 CardPaneController cpc = loadedView.controller();
                 try {
                     cpc.setCard(card);
