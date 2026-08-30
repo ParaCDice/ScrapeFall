@@ -208,7 +208,7 @@ public class MainController {
 
     @FXML
     protected void onExit() {
-        System.out.println("hi");
+        UserDataAccessor.getInstance().persistUser();
         System.exit(0);
     }
 
