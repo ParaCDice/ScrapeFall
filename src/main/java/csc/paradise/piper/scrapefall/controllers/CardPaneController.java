@@ -477,7 +477,7 @@ public class CardPaneController {
         dialog.setTitle("Rulings for " + getCard().name());
         dialog.getDialogPane().setPrefWidth(300);
         dialog.getDialogPane().setPrefHeight(260);
-        dialog.getDialogPane().getChildren().add(rulingsFxml);
+        dialog.getDialogPane().getChildren().addAll(rulingsFxml);
         adjustRulingsDialog();
         dialog.showAndWait()
                 .filter(response -> response == ButtonType.OK);
