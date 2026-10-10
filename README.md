@@ -9,7 +9,7 @@ The app will automatically scrape the given website (Oasis Games from SLC for no
 
 ## Getting Started
 
-Since there are no releases you're gonna have to run it from your chosen IDE.
+Since there are no releases (for now) you're gonna have to run it from your chosen IDE.
 
 ### Dependencies
 
@@ -18,12 +18,11 @@ Maven (to import dependencies)
 
 ### Installing
 
-Can't right now.
+Just grab an exe from releases (when i get around to putting on in there), it'll take a few minutes to boot up because of playwright being installed
 
 ### Executing program
 
-Pretty much can't. :/
-(COMING SOON!)
+Just use the exe lol
 
 ## Help
 
@@ -36,15 +35,8 @@ Contributors names and contact info
 Piper Paradise
 [@ParaCDice](https://github.com/ParaCDice)
 
-## Version History
-
-NOTTIN
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* ex: [awesome-readme](https://github.com/matiassingers/awesome-readme)
+* The ReadMe: [awesome-readme](https://github.com/matiassingers/awesome-readme)
+* The Scryfall Java Wrapper: [JavaScryfallAPI](https://github.com/DZultra/JavaScryfallAPI)
